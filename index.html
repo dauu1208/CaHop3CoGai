@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cá Hộp 3 Cô Gái — Nhóm 4 · Portfolio</title>
+    <link href="./css/fonts.css" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- ============ VIEWPORT 1: HERO + LON CÁ ============
+     Trạng thái do js/main.js quản lý: .hero.is-closed (mặc định) | .hero.is-open (đã mở lon, hiện 3 cô)
+     Chuyển cảnh đang dùng: B "Sốt tràn" (clip-path circle, xem .wipe trong CSS) -->
+    <section id="hero" class="hero is-closed">
+      <div class="hero__bg" aria-hidden="true">
+        <i class="blob b1 px" style="--speed: -0.08"></i>
+        <i class="blob b2 px" style="--speed: 0.12"></i>
+        <i class="blob b3 px" style="--speed: -0.18"></i>
+      </div>
+      <div class="hero__stage">
+        <h1 class="hero__word px" style="--speed: -0.25">
+          THREE<br />LADY<br />COOKS
+        </h1>
+
+        <button
+          class="can px"
+          style="--speed: 0.1"
+          aria-expanded="false"
+          aria-controls="cast"
+        >
+          <img
+            src="images/can.png"
+            alt="Lon cá hộp Three Lady Cooks — bấm để mở"
+          />
+          <span class="can__hint">Bấm vào lon để mở</span>
+        </button>
+
+        <!-- Lớp sốt tràn: chạy khi mở (.is-open) và chạy ngược khi thu về (.is-closing) -->
+        <div class="wipe" aria-hidden="true"></div>
+
+        <div class="cast" id="cast">
+          <p class="cast__title">Ba cô, một lon.</p>
+
+          <article class="lady" data-l="thu">
+            <div class="lady__photo">
+              <span class="lady__init" aria-hidden="true">AT</span>
+              <img
+                src="images/members/thu.jpg"
+                alt="Huỳnh Anh Thư"
+                onerror="this.remove()"
+              />
+            </div>
+            <h2>Huỳnh Anh Thư</h2>
+            <p>Kỹ thuật Phần mềm</p>
+            <a class="btn" href="member.html?m=thu">Xem chi tiết</a>
+          </article>
+          <article class="lady" data-l="minh">
+            <div class="lady__photo">
+              <span class="lady__init" aria-hidden="true">NM</span>
+              <img
+                src="images/members/minh.jpg"
+                alt="Nguyễn Ngọc Minh"
+                onerror="this.remove()"
+              />
+            </div>
+            <h2>Nguyễn Ngọc Minh</h2>
+            <p>Hệ thống thông tin</p>
+            <a class="btn" href="member.html?m=minh">Xem chi tiết</a>
+          </article>
+          <article class="lady" data-l="bang">
+            <div class="lady__photo">
+              <span class="lady__init" aria-hidden="true">KB</span>
+              <img
+                src="images/members/bang.jpg"
+                alt="Mai Khánh Băng"
+                onerror="this.remove()"
+              />
+            </div>
+            <h2>Mai Khánh Băng</h2>
+            <p>Kỹ thuật Phần mềm</p>
+            <a class="btn" href="member.html?m=bang">Xem chi tiết</a>
+          </article>
+
+          <button class="cast__close">Đóng lon</button>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#about"
+        >Cuộn xuống<i aria-hidden="true">↓</i></a
+      >
+    </section>
+
+    <!-- ============ VIEWPORT 2: THÔNG TIN NHÓM ============ -->
+    <section id="about" class="about">
+      <i class="deco d-ring px" style="--speed: 0.22" aria-hidden="true"></i>
+      <i class="deco d-blob px" style="--speed: -0.16" aria-hidden="true"></i>
+      <h2 class="about__title px" style="--speed: -0.06">
+        Ba cô, một lon,<br />đủ vị.
+      </h2>
+      <p class="about__text">
+        Xin chào, chúng mình là <b>Cá Hộp 3 Cô Gái – Nhóm 4</b>, một team gồm 3
+        thành viên và hiện đang là sinh viên năm 3. Với những thế mạnh và góc
+        nhìn khác nhau, chúng mình cùng kết hợp kiến thức về công nghệ, phát
+        triển phần mềm và hệ thống để tạo nên những sản phẩm sáng tạo, thực tế
+        và mang dấu ấn riêng của cả nhóm.
+      </p>
+
+      <div class="stats">
+        <div><small>Thành viên</small><b>3</b><span>bạn cùng nhóm</span></div>
+        <div>
+          <small>Sinh viên năm</small><b>3</b
+          ><span>ĐH Khoa học Tự nhiên, 2024 – nay</span>
+        </div>
+        <div>
+          <small>Dự án</small><b>3</b
+          ><span>sản phẩm: web, hệ thống và app</span>
+        </div>
+      </div>
+
+      <div class="tools" aria-label="Công nghệ nhóm đã dùng">
+        <span>React</span><span>TypeScript</span><span>NestJS</span
+        ><span>PostgreSQL</span><span>FastAPI</span><span>Flutter</span
+        ><span>Dart</span><span>Supabase</span><span>Gemini</span
+        ><span>Deepgram</span>
+      </div>
+    </section>
+
+    <!-- ============ VIEWPORT 3–5: DỰ ÁN ============
+     Mỗi .proj: giữa = ảnh dự án (.proj__shot, parallax), xung quanh = 4 khối thông tin (.info),
+     dưới = timeline quá trình build (.tl) với chip cô nào làm giai đoạn nào.
+     JS: khi section vào màn hình thì thêm .is-in, CSS vẽ đường timeline chạy dần và sáng từng chấm. -->
+    <section id="p1" class="proj proj--yellow">
+      <i class="deco d-ring px" style="--speed: 0.28" aria-hidden="true"></i>
+      <span class="proj__ghost px" style="--speed: -0.2" aria-hidden="true"
+        >01</span
+      >
+      <header class="proj__head">
+        <small>Dự án 1</small>
+        <h2>UIA SmartTour</h2>
+        <p class="proj__sub">Intelligent Food Recommendation Web Application</p>
+      </header>
+      <div class="proj__shot px" style="--speed: 0.08">
+        <img
+          src="images/projects/uia-smarttour.jpg"
+          alt="Banner dự án UIA SmartTour — Find Food Find Us"
+          loading="lazy"
+        />
+      </div>
+      <aside class="info i1">
+        <small>Loại</small>Web app gợi ý ẩm thực thông minh
+      </aside>
+      <aside class="info i2">
+        <small>Bối cảnh</small>Đồ án môn Tư duy tính toán, lớp 24C08
+      </aside>
+      <aside class="info i3">
+        <small>Đơn vị</small>ĐHQG-HCM, ĐH Khoa học Tự nhiên, Khoa Công nghệ
+        thông tin
+      </aside>
+      <aside class="info i4"><small>Slogan</small>“Find Food Find Us”</aside>
+      <ol class="tl">
+        <li>
+          <h3>Ý tưởng</h3>
+          <p>Xác định bài toán và nhu cầu tìm món ăn</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Thiết kế</h3>
+          <p>Luồng dùng và giao diện</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Phát triển</h3>
+          <p>Xây dựng gợi ý và web app</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Hoàn thiện</h3>
+          <p>Kiểm thử, chỉnh sửa và báo cáo</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+      </ol>
+    </section>
+
+    <section id="p2" class="proj proj--cream">
+      <i class="deco d-ring px" style="--speed: -0.24" aria-hidden="true"></i>
+      <span class="proj__ghost px" style="--speed: -0.2" aria-hidden="true"
+        >02</span
+      >
+      <header class="proj__head">
+        <small>Dự án 2</small>
+        <h2>Vĩnh Phúc Viên</h2>
+        <p class="proj__sub">
+          Cemetery Management System &amp; AI Concierge Platform
+        </p>
+      </header>
+      <div class="proj__shot px" style="--speed: 0.08">
+        <img
+          src="images/projects/vinh-phuc-vien.jpg"
+          alt="Banner dự án Vĩnh Phúc Viên"
+          loading="lazy"
+        />
+      </div>
+      <aside class="info i1">
+        <small>Loại</small>Nền tảng web quản lý nghĩa trang
+      </aside>
+      <aside class="info i2">
+        <small>Bối cảnh</small>Đồ án Công nghệ phần mềm, Nhóm 8 — HCMUS
+      </aside>
+      <aside class="info i3">
+        <small>Công nghệ</small>React 19, TypeScript, NestJS, PostgreSQL,
+        FastAPI
+      </aside>
+      <aside class="info i4">
+        <small>Điểm nhấn</small>Quản lý phần mộ số, hồ sơ tưởng niệm và AI tư
+        vấn
+      </aside>
+      <ol class="tl">
+        <li>
+          <h3>Phân tích</h3>
+          <p>Khảo sát yêu cầu, quy trình quản trị</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Thiết kế</h3>
+          <p>Kiến trúc hệ thống, cơ sở dữ liệu</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Phát triển</h3>
+          <p>Frontend, backend và dịch vụ ML</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Kiểm thử</h3>
+          <p>Tích hợp, sửa lỗi, bàn giao</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+      </ol>
+    </section>
+
+    <section id="p3" class="proj proj--red">
+      <i class="deco d-ring px" style="--speed: 0.28" aria-hidden="true"></i>
+      <span class="proj__ghost px" style="--speed: -0.2" aria-hidden="true"
+        >03</span
+      >
+      <header class="proj__head">
+        <small>Dự án 3</small>
+        <h2>FinFlow</h2>
+        <p class="proj__sub">A smart and simple way to manage your finance</p>
+      </header>
+      <div class="proj__shot px" style="--speed: 0.08">
+        <img
+          src="images/projects/finflow.jpg"
+          alt="Banner dự án FinFlow"
+          loading="lazy"
+        />
+      </div>
+      <aside class="info i1">
+        <small>Loại</small>Ứng dụng di động theo dõi tài chính cá nhân
+      </aside>
+      <aside class="info i2">
+        <small>Nền tảng</small>Flutter, chạy trên Android
+      </aside>
+      <aside class="info i3">
+        <small>Công nghệ</small>Flutter, Dart, Supabase, Gemini, Deepgram,
+        Google APIs
+      </aside>
+      <aside class="info i4">
+        <small>Tính năng</small>Ghi thu chi, ví, hạn mức ngân sách, mục tiêu
+        tiết kiệm, biểu đồ
+      </aside>
+      <ol class="tl">
+        <li>
+          <h3>Ý tưởng</h3>
+          <p>Chốt tính năng quản lý thu chi</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Thiết kế</h3>
+          <p>Giao diện app và luồng người dùng</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Lập trình</h3>
+          <p>Flutter, Supabase, tích hợp AI</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+        <li>
+          <h3>Kiểm thử</h3>
+          <p>Chạy thử, sửa lỗi, hoàn thiện</p>
+          <em class="who">Cả nhóm</em>
+        </li>
+      </ol>
+    </section>
+
+    <footer class="foot">
+      Cá Hộp 3 Cô Gái · Nhóm 4 · Portfolio · <a href="#hero">Về đầu trang</a>
+    </footer>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
