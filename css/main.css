@@ -399,6 +399,10 @@ small {
 }
 
 /* ===== PROJECTS ===== */
+.proj__dwell {
+  grid-column: 1/-1;
+  height: 32vh;
+}
 .proj {
   min-height: var(--h-sec);
   padding: 12vh 6vw 9vh;
@@ -441,6 +445,13 @@ small {
   font-weight: 600;
   opacity: 0.85;
 }
+.proj__desc {
+  flex-basis: 100%; /* xuống dòng riêng trong .proj__head (vốn là flex) */
+  max-width: 62ch;
+  margin-top: 0.6rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
 .proj__shot {
   grid-area: shot;
   align-self: center;
@@ -464,6 +475,17 @@ small {
 .info small {
   display: block;
   font-weight: 400;
+  opacity: 0.75;
+  margin-bottom: 0.15rem;
+}
+.info ul {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.info li + li {
+  margin-top: 0.25rem;
 }
 .i1 {
   grid-area: i1;
@@ -517,6 +539,20 @@ small {
   border-radius: 50%;
   background: var(--cream);
   border: 4px solid var(--ink);
+}
+.tl .who {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+.proj--cream .tl .who {
+  color: var(--cream);
 }
 .tl h3 {
   font: 900 1.25rem/1.3 var(--display);
@@ -746,13 +782,17 @@ small {
   .proj {
     grid-template-columns: 1fr;
     grid-template-rows: none;
-    grid-template-areas: "head" "shot" "i1" "i2" "tl";
+    /* i1/i3 và i2/i4 dùng chung area trên desktop (xếp bằng align-self trong 1 ô cao);
+       trên mobile mỗi ô chỉ cao bằng nội dung nên phải tách thành hàng riêng, không thì đè chữ lên nhau */
+    grid-template-areas: "head" "shot" "i1" "i3" "i2" "i4" "tl";
   }
   .i3 {
-    grid-area: i1;
+    grid-area: i3;
+    align-self: start;
   }
   .i4 {
-    grid-area: i2;
+    grid-area: i4;
+    align-self: start;
   }
   .tl {
     grid-template-columns: 1fr;
@@ -791,7 +831,7 @@ small {
 .stack section {
   position: sticky; /* top do JS đặt: dính khi đáy section chạm đáy màn hình */
   transform-origin: 50% calc(100% - 50vh);
-  scale: calc(1 - var(--cover, 0) * 0.12);
+  scale: calc(1 - var(--cover, 0) * 0.08);
   border-radius: calc(var(--r, 0) * 56px);
   will-change: scale;
 }
@@ -805,7 +845,8 @@ small {
   inset: 0;
   z-index: 60;
   background: var(--deep);
-  opacity: calc(var(--cover, 0) * 0.7);
+  /* cover*cover: tối chậm lúc mới bắt đầu che, đủ thời gian đọc nốt phần cuối (timeline) */
+  opacity: calc(var(--cover, 0) * var(--cover, 0) * 0.55);
   pointer-events: none;
 }
 /* hero: chữ to phóng dần ra khi rời viewport 1 */
